@@ -66,7 +66,6 @@
 #include <string.h>
 #include <TargetConditionals.h>
 
-#if TARGET_OS_OSX
 struct part {
 	struct	part *next;		/* forward link of partitions on disk */
 	char	*name;			/* device name */
@@ -387,6 +386,3 @@ rawname(name)
 	(void)strlcat(rawbuf, &dp[1], sizeof(rawbuf));
 	return (rawbuf);
 }
-
-#endif /* TARGET_OS_OSX */
-

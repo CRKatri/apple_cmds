@@ -72,8 +72,6 @@
 #include <sys/time.h>
 #include <signal.h>
 
-#include <TargetConditionals.h>
-
 #include "fsck.h"
 #include "../edt_fstab/edt_fstab.h"
 

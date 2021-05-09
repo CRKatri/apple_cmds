@@ -29,8 +29,6 @@
 #ifndef edt_fstab_h
 #define edt_fstab_h
 
-#include <TargetConditionals.h>
-
 #if (TARGET_OS_IPHONE && !TARGET_OS_SIMULATOR)
 #define RAMDISK_FS_SPEC         "ramdisk"
 
