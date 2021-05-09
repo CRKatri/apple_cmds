@@ -40,7 +40,7 @@ __FBSDID("$FreeBSD: src/usr.bin/colldef/scan.l,v 1.19 2002/08/23 04:18:26 ache E
 #include <sys/types.h>
 #include "collate.h"
 #include "common.h"
-#include "y.tab.h"
+#include "parse.h"
 
 int line_no = 1, save_no, fromsubs;
 wchar_t buf0[BUFSIZE], *ptr;

@@ -49,7 +49,7 @@ __FBSDID("$FreeBSD: src/usr.bin/mklocale/lex.l,v 1.9 2005/02/26 21:47:54 ru Exp 
 #include <stdlib.h>
 
 #include "ldef.h"
-#include "y.tab.h"
+#include "yacc.h"
 #include "extern.h"
 %}
 
