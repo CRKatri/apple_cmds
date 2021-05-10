@@ -11,6 +11,6 @@ CFLAGS+= -DNO_UTMP -DLINEMODE -DKLUDGELINEMODE -DUSE_TERMIO \
 	-I${.CURDIR}/../../lib
 LDADD=-lncursesw
 
-.PATH: ../../lib/libtelnet
+.PATH: ${.CURDIR}/../../lib/libtelnet
 
 .include <bsd.prog.mk>

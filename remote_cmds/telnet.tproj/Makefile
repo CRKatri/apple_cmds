@@ -9,6 +9,6 @@ CFLAGS+=-DTERMCAP -DKLUDGELINEMODE -DUSE_TERMIO -DENV_HACK \
    # -DENCRYPTION -DKRB4
 LDADD=-lncursesw -lipsec
 
-.PATH: ../../lib/libtelnet
+.PATH: ${.CURDIR}/../../lib/libtelnet
 
 .include <bsd.prog.mk>

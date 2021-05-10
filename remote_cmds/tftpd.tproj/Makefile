@@ -4,6 +4,6 @@ MAN=	tftpd.8
 
 BINDIR=/usr/libexec
 
-.PATH: ../tftp.tproj
+.PATH: ${.CURDIR}/../tftp.tproj
 
 .include <bsd.prog.mk>
