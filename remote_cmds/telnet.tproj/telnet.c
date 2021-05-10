@@ -667,7 +667,7 @@ is_unique(char *name, char **as, char **ae)
 	return (1);
 }
 
-#ifdef	TERMCAP
+#ifndef	TERMCAP
 char termbuf[1024];
 
 /*ARGSUSED*/
