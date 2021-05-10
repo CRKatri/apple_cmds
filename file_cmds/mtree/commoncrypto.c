@@ -12,7 +12,7 @@
 #include <unistd.h>
 #include <sys/xattr.h>
 #include <sys/mount.h>
-#include <apfs/apfs_fsctl.h>
+//#include <apfs/apfs_fsctl.h>
 
 #include "commoncrypto.h"
 #include "extern.h"
@@ -255,6 +255,7 @@ get_xdstream_privateid(char *path, char *buf) {
 			nextName += strlen(name) + 1;
 		}
 
+#ifdef APFSIOC_XDSTREAM_OBJ_ID
 		for (int i = 0; i < xattrIndex; i++) {
 			char *name = xattrs[i];
 			// System volume has stream based xattrs only in form of resource forks
@@ -276,6 +277,7 @@ get_xdstream_privateid(char *path, char *buf) {
 				}
 			}
 		}
+#endif
 
 		ai->xdstream_priv_id = xd_obj_id;
 		// insert a dummy value as digest is not used in presence of mflag

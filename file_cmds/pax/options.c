@@ -65,6 +65,8 @@ __used static const char rcsid[] = "$OpenBSD: options.c,v 1.70 2008/06/11 00:49:
 #include "tar.h"
 #include "extern.h"
 
+char *chdname;
+
 /*
  * Routines which handle command line options
  */

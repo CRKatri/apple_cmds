@@ -75,7 +75,6 @@ __RCSID("$FreeBSD: src/bin/ls/ls.c,v 1.66 2002/09/21 01:28:36 wollman Exp $");
 #include <sys/param.h>
 #include <get_compat.h>
 #include <sys/sysctl.h>
-#include <System/sys/fsctl.h>
 #else
 #define COMPAT_MODE(a,b) (1)
 #endif /* __APPLE__ */

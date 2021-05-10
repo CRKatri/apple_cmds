@@ -203,7 +203,7 @@ int opt_add(const char *);
 int bad_opt(void);
 int pax_format_opt_add(char *);
 int pax_opt(void);
-char *chdname;
+extern char *chdname;
 
 /*
  * pat_rep.c
