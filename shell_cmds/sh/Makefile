@@ -1,7 +1,7 @@
 #	@(#)Makefile	8.4 (Berkeley) 5/5/95
 # $FreeBSD: head/bin/sh/Makefile 322515 2017-08-14 19:21:37Z ngie $
-
-.include <src.opts.mk>
+#
+BINDIR=/bin
 
 PACKAGE=runtime
 PROG=	sh
@@ -19,18 +19,18 @@ SRCS= ${SHSRCS} ${GENSRCS} ${GENHDRS}
 # utilities of the same name are handled with the associated manpage,
 # builtin.1 in share/man/man1/.
 
-LIBADD=	edit
+LDADD=-ledit
 
 CFLAGS+=-DSHELL -I. -I${.CURDIR}
 # for debug:
 # DEBUG_FLAGS+= -g -DDEBUG=2 -fno-inline
-WARNS?=	2
+#WARNS?=	2
 WFORMAT=0
 
 .PATH:	${.CURDIR}/bltin \
 	${.CURDIR:H}/kill \
 	${.CURDIR:H}/test \
-	${SRCTOP}/usr.bin/printf
+	${.CURDIR}/../printf
 
 CLEANFILES+= mknodes mknodes.o \
 	mksyntax mksyntax.o
@@ -39,27 +39,22 @@ CLEANFILES+= ${GENSRCS} ${GENHDRS}
 build-tools: mknodes mksyntax
 
 .ORDER: builtins.c builtins.h
-builtins.h: .NOMETA
 builtins.c builtins.h: mkbuiltins builtins.def
 	sh ${.CURDIR}/mkbuiltins ${.CURDIR}
 
 # XXX this is just to stop the default .c rule being used, so that the
 # intermediate object has a fixed name.
 # XXX we have a default .c rule, but no default .o rule.
-mknodes.o mksyntax.o: ${BUILD_TOOLS_META}
-	${CC} ${CFLAGS} ${LDFLAGS} ${.IMPSRC} ${LDLIBS} -o ${.TARGET}
-mknodes: mknodes.o ${BUILD_TOOLS_META}
-mksyntax: mksyntax.o ${BUILD_TOOLS_META}
+mknodes mksyntax:
+	clang ${.IMPSRC} ${.TARGET}.c -o ${.TARGET}
 
 .ORDER: nodes.c nodes.h
-nodes.h: .NOMETA
 nodes.c nodes.h: mknodes nodetypes nodes.c.pat
-	${BTOOLSPATH:U.}/mknodes ${.CURDIR}/nodetypes ${.CURDIR}/nodes.c.pat
+	./mknodes ${.CURDIR}/nodetypes ${.CURDIR}/nodes.c.pat
 
 .ORDER: syntax.c syntax.h
-syntax.h: .NOMETA
 syntax.c syntax.h: mksyntax
-	${BTOOLSPATH:U.}/mksyntax
+	./mksyntax
 
 token.h: mktokens
 	sh ${.CURDIR}/mktokens

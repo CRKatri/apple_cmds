@@ -319,7 +319,7 @@ getentry(struct utmpentry *e, struct utmp *up)
 static void
 getentryx(struct utmpentry *e, struct utmpx *up)
 {
-	COMPILE_ASSERT(sizeof(e->name) > sizeof(up->ut_name));
+	COMPILE_ASSERT(sizeof(e->name) > sizeof(up->ut_user));
 	COMPILE_ASSERT(sizeof(e->line) > sizeof(up->ut_line));
 	COMPILE_ASSERT(sizeof(e->host) > sizeof(up->ut_host));
 
@@ -331,7 +331,7 @@ getentryx(struct utmpentry *e, struct utmpx *up)
 	 * reason we use the size of the _source_ as the length
 	 * argument.
 	 */
-	(void)strncpy(e->name, up->ut_name, sizeof(up->ut_name));
+	(void)strncpy(e->name, up->ut_user, sizeof(up->ut_user));
 	(void)strncpy(e->line, up->ut_line, sizeof(up->ut_line));
 	(void)strncpy(e->host, up->ut_host, sizeof(up->ut_host));
 
