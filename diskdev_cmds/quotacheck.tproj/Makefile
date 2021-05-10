@@ -4,6 +4,6 @@ SRCS=	quotacheck.c \
 	hfs_quotacheck.c \
 	preen.c
 
-.PATH: ../disklib
+.PATH: ${.CURDIR}/../disklib
 
 .include <bsd.prog.mk>
