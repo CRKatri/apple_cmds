@@ -171,7 +171,7 @@ static const char *Id = "$Id: diffstat.c,v 1.55 2012/01/03 09:44:24 tom Exp $";
  */
 
 #if defined(HAVE_CONFIG_H)
-#include <config.h>
+#include "config.h"
 #endif
 
 #if defined(WIN32) && !defined(HAVE_CONFIG_H)
