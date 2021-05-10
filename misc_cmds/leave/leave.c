@@ -45,6 +45,7 @@ static char sccsid[] = "@(#)leave.c	8.1 (Berkeley) 6/6/93";
 #include <sys/cdefs.h>
 __FBSDID("$FreeBSD: src/usr.bin/leave/leave.c,v 1.12 2002/09/04 23:29:03 dwmalone Exp $");
 
+#include <sys/types.h>
 #include <err.h>
 #include <ctype.h>
 #include <locale.h>
