@@ -1,24 +1,23 @@
-Project = mail
-Install_Dir = /usr/bin
+#	@(#)Makefile	8.2 (Berkeley) 1/25/94
+# $FreeBSD$
 
-CFILES = aux.c cmd1.c cmd2.c cmd3.c cmdtab.c collect.c \
-         edit.c fio.c getname.c head.c lex.c list.c main.c names.c\
-         popen.c quit.c send.c strings.c temp.c tty.c v7.local.c\
-         vars.c version.c
-MANPAGES = mail.1 mailx.1
+CONFS=	misc/mail.rc
+PROG=	mail
+SRCS=	aux.c cmd1.c cmd2.c cmd3.c cmdtab.c collect.c \
+	edit.c fio.c getname.c head.c lex.c list.c main.c names.c\
+	popen.c quit.c send.c strings.c temp.c tty.c v7.local.c\
+	vars.c version.c
+FILES=	mail.help mail.tildehelp
+FILESDIR=	${SHAREDIR}/misc
+EFILES=	mail.rc
+LINKS=	${BINDIR}/mail ${BINDIR}/Mail ${BINDIR}/mail ${BINDIR}/mailx
+MAN=	mail.1 mailx.1
+MLINKS=	mail.1 Mail.1
 
-Extra_CC_Flags = -Wall -Werror -mdynamic-no-pic
-Extra_LD_Flags = -dead_strip
+.PATH: ${.CURDIR}/misc
 
-include $(MAKEFILEPATH)/CoreOS/ReleaseControl/BSDCommon.make
+etc-mailrc:
+	cd ${.CURDIR}/misc; ${INSTALL} -o root -g wheel \
+	    -m 644 ${EFILES} ${DESTDIR}/private/etc
 
-ETCDIR=$(DSTROOT)/private/etc
-MISCDIR=$(DSTROOT)/usr/share/misc
-
-after_install:
-	$(INSTALL_DIRECTORY) $(MISCDIR)
-	$(INSTALL_FILE) -c misc/mail.help misc/mail.tildehelp $(MISCDIR)
-	$(INSTALL_DIRECTORY) $(ETCDIR)
-	$(INSTALL_FILE) -c -m 644 misc/mail.rc $(ETCDIR)/mail.rc
-	$(LN) -f $(DSTROOT)$(Install_Dir)/mail \
-		 $(DSTROOT)$(Install_Dir)/mailx
+.include <bsd.prog.mk>

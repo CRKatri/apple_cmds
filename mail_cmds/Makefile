@@ -1,5 +1,7 @@
-Project = mail_cmds
+SUBDIR=	biff \
+	comsat \
+	from \
+	mail \
+	msgs 
 
-SubProjects = biff comsat from mail msgs 
-
-include $(MAKEFILEPATH)/CoreOS/ReleaseControl/BSDCommon.make
+.include <bsd.subdir.mk>

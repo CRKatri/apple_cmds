@@ -1,11 +1,5 @@
-Project = msgs
-Install_Dir = /usr/bin
+PROG=	msgs
 
-CFILES = msgs.c
-MANPAGES = msgs.1
+LDADD=-lncursesw
 
-Extra_CC_Flags = -Wall -Werror -mdynamic-no-pic
-Extra_LD_Flags = -dead_strip \
-	-lcurses
-
-include $(MAKEFILEPATH)/CoreOS/ReleaseControl/BSDCommon.make
+.include <bsd.prog.mk>
