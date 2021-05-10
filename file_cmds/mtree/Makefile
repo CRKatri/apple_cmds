@@ -12,7 +12,7 @@ SRCS=	commoncrypto.c \
 	verify.c \
 	crc.c
 
-.PATH: ../cksum
+.PATH: ${.CURDIR}/../cksum
 
 LDADD=-framework CoreFoundation
 
