@@ -1,0 +1,2 @@
+RPCGEN?=rpcgen
+STRIP=

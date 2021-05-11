@@ -9,6 +9,7 @@
  * Apple Inc.
  */
 #include <assert.h>
+#include <stdarg.h>
 #include <os/log_private.h>
 
 #define kRtadvdLoggerID        "com.apple.rtadvd"
