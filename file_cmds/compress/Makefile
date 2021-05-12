@@ -3,4 +3,6 @@ MAN=	compress.1 uncompress.1 zopen.3
 SRCS=	compress.c zopen.c
 SCRIPTS=	zcat.sh
 
+BINDIR=/bin
+
 .include <bsd.prog.mk>

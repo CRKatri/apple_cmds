@@ -14,6 +14,9 @@ SRCS=	commoncrypto.c \
 
 .PATH: ${.CURDIR}/../cksum
 
+CFLAGS+=-DENABLE_MD5 -DENABLE_RMD160 -DENABLE_SHA1 -DENABLE_SHA256
 LDADD=-framework CoreFoundation
+
+BINDIR=/usr/sbin
 
 .include <bsd.prog.mk>

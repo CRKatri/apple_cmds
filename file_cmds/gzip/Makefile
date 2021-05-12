@@ -12,4 +12,6 @@ SCRIPTS=	gzexe \
 CFLAGS+=-DGZIP_APPLE_VERSION=\"321.40.3\"
 LDADD=-llzma -lz -lbz2
 
+BINDIR=/bin
+
 .include <bsd.prog.mk>

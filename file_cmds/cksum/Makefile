@@ -7,4 +7,6 @@ SRCS=	cksum.c \
 	sum1.c \
 	sum2.c
 
+BINDIR=/bin
+
 .include <bsd.prog.mk>

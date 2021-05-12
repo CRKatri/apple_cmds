@@ -18,4 +18,6 @@ SRCS=	ar_io.c \
 	tar.c \
 	tty_subs.c
 
+BINDIR=/bin
+
 .include <bsd.prog.mk>
