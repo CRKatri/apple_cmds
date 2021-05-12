@@ -36,9 +36,7 @@
 #include <sys/param.h>
 #include <pthread/pthread.h>
 #include <mach/message.h>
-#define PRIVATE
 #include <libproc.h>
-#undef PRIVATE
 #include <os/assumes.h>
 #include <os/overflow.h>
 
@@ -181,7 +179,6 @@ filter_is_fd_type(int filter)
 	switch (filter) {
 	case EVFILT_VNODE ... EVFILT_READ:
 	case EVFILT_SOCK:
-	case EVFILT_NW_CHANNEL:
 		return 1;
 	default:
 		return 0;

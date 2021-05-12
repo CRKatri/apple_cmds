@@ -40,7 +40,6 @@
 #include <sys/fcntl.h>
 #include <glob.h>
 #include <CoreFoundation/CoreFoundation.h>
-#include <NSSystemDirectories.h>
 #include <sysdir.h>
 
 #if defined(__x86_64__)

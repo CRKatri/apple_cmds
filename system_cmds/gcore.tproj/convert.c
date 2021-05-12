@@ -29,7 +29,8 @@
 #include <spawn.h>
 #include <signal.h>
 #include <xpc/xpc.h>
-#include <xpc/private.h>
+/* Declare xpc_create_from_plist manually because xpc/private.h is closed source */
+xpc_object_t xpc_create_from_plist(void *data, size_t size);
 #include <sys/event.h>
 #include <sys/time.h>
 

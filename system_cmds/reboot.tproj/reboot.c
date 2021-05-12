@@ -74,6 +74,8 @@ __unused static const char rcsid[] =
 #include <sys/time.h>
 #endif
 
+int	reboot3(int);
+
 void usage(void);
 u_int get_pageins(void);
 #if defined(__APPLE__) && !(TARGET_OS_IPHONE && !TARGET_OS_SIMULATOR)

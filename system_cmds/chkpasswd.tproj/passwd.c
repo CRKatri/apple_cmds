@@ -160,10 +160,10 @@ main(int argc, char *argv[])
 			file_check_passwd(user, locn);
 			break;
 		case INFO_NIS:
-			nis_check_passwd(user, locn);
+		//	nis_check_passwd(user, locn);
 			break;
 		case INFO_OPEN_DIRECTORY:
-			od_check_passwd(user, locn);
+		//	od_check_passwd(user, locn);
 			break;
 		case INFO_PAM:
 			pam_check_passwd(user);

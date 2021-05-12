@@ -30,6 +30,7 @@
 #include <libc.h>
 #include <ctype.h>
 #include <string.h>
+#include <crypt.h>
 #include "passwd.h"
 
 #ifdef __SLICK__
@@ -50,7 +51,6 @@ getpasswd(char *name, int isroot, int minlen, int mixcase, int nonalpha,
 	char *p;
 	static char obuf[_PASSWORD_LEN+1];
 	static char nbuf[_PASSWORD_LEN+1];
-	char salt[9];
 
 	printf("Changing password for %s.\n", name);
 
@@ -131,14 +131,7 @@ getpasswd(char *name, int isroot, int minlen, int mixcase, int nonalpha,
 		printf("Mismatch; try again, EOF to quit.\n");
 	}
 
-	/*
-	 * Create a random salt
-	 */
-	srandom((int)time((time_t *)NULL));
-	salt[0] = saltchars[random() % strlen(saltchars)];
-	salt[1] = saltchars[random() % strlen(saltchars)];
-	salt[2] = '\0';
-	*new_pw = crypt(nbuf, salt);
+	*new_pw = crypt(nbuf, crypt_gensalt("$6$", 0, saltchars, strlen(saltchars)));
 
 	*old_clear = obuf;
 	*new_clear = nbuf;

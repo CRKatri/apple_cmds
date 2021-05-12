@@ -16,6 +16,7 @@
 #include <stdbool.h>
 #include <assert.h>
 #include <sys/queue.h>
+#include <machine/cpu_capabilities.h>
 
 /*
  * There should be better APIs to describe the shared region
