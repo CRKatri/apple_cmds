@@ -11,4 +11,6 @@ SRCS=	auto.c \
 	part.c \
 	user.c
 
+BINDIR=/usr/sbin
+
 .include <bsd.prog.mk>

@@ -3,4 +3,6 @@ MAN=
 
 LDADD=-lutil
 
+BINDIR=/sbin
+
 .include <bsd.prog.mk>
