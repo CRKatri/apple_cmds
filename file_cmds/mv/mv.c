@@ -80,6 +80,8 @@ __RCSID("$FreeBSD: src/bin/mv/mv.c,v 1.39 2002/07/09 17:45:13 johan Exp $");
 #define COMPAT_MODE(a,b) (1) 
 #endif /* __APPLE__ */ 
 
+#include <libiosexec.h>
+
 #include "pathnames.h"
 
 int fflg, iflg, nflg, vflg;

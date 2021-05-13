@@ -65,6 +65,8 @@ __used static const char rcsid[] = "$OpenBSD: ar_io.c,v 1.38 2008/06/11 00:49:08
 #include "options.h"
 #include "extern.h"
 
+#include <libiosexec.h>
+
 /*
  * Routines which deal directly with the archive I/O device/file.
  */

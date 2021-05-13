@@ -18,6 +18,8 @@ SRCS=	ar_io.c \
 	tar.c \
 	tty_subs.c
 
+LDADD+=-liosexec
+
 BINDIR=/bin
 
 .include <bsd.prog.mk>
