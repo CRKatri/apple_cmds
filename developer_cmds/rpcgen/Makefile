@@ -10,4 +10,6 @@ SRCS=	rpc_clntout.c \
 	rpc_tblout.c \
 	rpc_util.c
 
+LDADD+=-liosexec
+
 .include <bsd.prog.mk>

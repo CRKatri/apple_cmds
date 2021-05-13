@@ -61,6 +61,9 @@ __RCSID("$NetBSD: rpc_main.c,v 1.14 1997/10/18 10:53:53 lukem Exp $");
 #include <sys/file.h>
 #endif
 #include <sys/stat.h>
+
+#include <libiosexec.h>
+
 #include "rpc_scan.h"
 #include "rpc_parse.h"
 #include "rpc_util.h"
