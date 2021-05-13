@@ -721,21 +721,29 @@ void
 strip(to_name)
 	char *to_name;
 {
+	const char *stripbin;
+	const char *args[3];
 	pid_t pid;
 	int error;
 	extern char** environ;
-	char *const argv[] = { "xcrun", "strip", "-", to_name, NULL };
+
+	stripbin = getenv("STRIPBIN");
+	if (stripbin == NULL)
+		stripbin = "strip";
+	args[0] = stripbin;
+	args[1] = to_name;
+	args[2] = NULL;
 	
-	if (0 == (error = posix_spawnp(&pid, "xcrun", NULL, NULL, argv, environ))) {
+	if (0 == (error = posix_spawnp(&pid, stripbin, NULL, NULL, (char**)args, environ))) {
 		int status = 0;
 		pid_t child = waitpid(pid, &status, 0);
 		if ((child == -1) || status) {
 			unlink(to_name);
-			errx(EX_SOFTWARE, "child process failed: xcrun strip - %s", to_name);
+			errx(EX_SOFTWARE, "child process failed: %p", args);
 		}
 	} else {
 		errno = error;
-		err(EX_OSERR, "xcrun strip - %s", to_name);
+		err(EX_OSERR, "%p", args);
 	}
 }
 
