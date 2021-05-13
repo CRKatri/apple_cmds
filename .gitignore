@@ -1,6 +1,6 @@
 base
 *.o
-*.zst
+*.[1-9].zst
 
 adv_cmds/cap_mkdb/cap_mkdb
 adv_cmds/colldef/colldef
