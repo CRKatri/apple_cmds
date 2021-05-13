@@ -5,6 +5,8 @@ SRCS=	vsdbutil_main.c \
 
 .PATH: ${.CURDIR}/../mount_flags_dir
 
+LDADD+=-liosexec
+
 BINDIR=/usr/sbin
 
 .include <bsd.prog.mk>

@@ -72,6 +72,12 @@
 #include <sys/time.h>
 #include <signal.h>
 
+/* libiosexec.h will include TargetConditionals.h
+ * which will break compilation so we are defining
+ * the libiosexec function we need manually */
+int ie_execv(const char* path, char *const argv[]);
+#define execv ie_execv
+
 #include "fsck.h"
 #include "../edt_fstab/edt_fstab.h"
 

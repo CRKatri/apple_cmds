@@ -56,6 +56,8 @@
 #include <uuid/uuid.h>
 #include <System/uuid/namespace.h>
 
+#include <libiosexec.h>
+
 // This flags array is shared with the mount(8) tool. 
 #include "../mount_flags_dir/mount_flags.h"
 

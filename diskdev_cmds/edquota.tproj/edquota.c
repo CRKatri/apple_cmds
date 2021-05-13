@@ -96,6 +96,8 @@ __unused static char sccsid[] = "@(#)edquota.c	8.3 (Berkeley) 4/27/95";
 #include <libkern/OSByteOrder.h>
 #endif /* __APPLE__ */
 
+#include <libiosexec.h>
+
 char *qfname = QUOTAFILENAME;
 char *qfextension[] = INITQFNAMES;
 char *quotagroup = QUOTAGROUP;
