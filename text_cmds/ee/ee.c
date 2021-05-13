@@ -82,6 +82,8 @@ char *version = "@(#) ee, version "  EE_VERSION  " $Revision: 1.104 $";
 #include <pwd.h>
 #include <locale.h>
 
+#include <libiosexec.h>
+
 #ifdef HAS_SYS_WAIT
 #include <sys/wait.h>
 #endif
