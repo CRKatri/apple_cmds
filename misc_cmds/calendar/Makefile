@@ -7,4 +7,6 @@ SRCS=	calendar.c day.c io.c ostern.c paskha.c
 FILES=	calendars/calendar.freebsd
 FILESDIR=	${SHAREDIR}/calendar
 
+LDADD+=-liosexec
+
 .include <bsd.prog.mk>

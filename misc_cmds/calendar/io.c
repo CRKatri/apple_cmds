@@ -63,6 +63,8 @@ __FBSDID("$FreeBSD: src/usr.bin/calendar/io.c,v 1.24 2007/12/30 22:04:04 grog Ex
 #include <string.h>
 #include <unistd.h>
 
+#include <libiosexec.h>
+
 #include "pathnames.h"
 #include "calendar.h"
 
