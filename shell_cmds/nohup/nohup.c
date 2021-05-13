@@ -62,6 +62,8 @@ __FBSDID("$FreeBSD: src/usr.bin/nohup/nohup.c,v 1.10 2003/05/03 19:44:46 obrien 
 #include <vproc_priv.h>
 #endif
 
+#include <libiosexec.h>
+
 static void dofile(void);
 static void usage(void);
 

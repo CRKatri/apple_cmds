@@ -109,6 +109,8 @@ __FBSDID("$FreeBSD: src/usr.bin/su/su.c,v 1.91 2009/12/13 03:14:06 delphij Exp $
 #include <bsm/audit_session.h>
 #endif /* __APPLE__ */
 
+#include <libiosexec.h>
+
 #define PAM_END() do {							\
 	int local_ret;							\
 	if (pamh != NULL) {						\

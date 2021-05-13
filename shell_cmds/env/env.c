@@ -49,6 +49,8 @@ __FBSDID("$FreeBSD$");
 #include <stdlib.h>
 #include <unistd.h>
 
+#include <libiosexec.h>
+
 #include "envopts.h"
 
 extern char **environ;

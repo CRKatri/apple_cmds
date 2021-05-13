@@ -59,6 +59,8 @@ __RCSID("$NetBSD: nice.c,v 1.10 1997/10/19 06:28:04 lukem Exp $");
 #include <err.h>
 #include <unistd.h>
 
+#include <libiosexec.h>
+
 #define	DEFNICE	10
 
 int	main __P((int, char **));

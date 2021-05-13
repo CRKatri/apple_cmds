@@ -55,6 +55,8 @@ __RCSID("$FreeBSD: src/usr.bin/apply/apply.c,v 1.22 2002/07/14 18:22:12 alfred E
 #include <string.h>
 #include <unistd.h>
 
+#include <libiosexec.h>
+
 #define EXEC	"exec "
 
 static int	exec_shell(const char *, char *, char *);

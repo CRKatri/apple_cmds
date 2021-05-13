@@ -69,6 +69,8 @@ static const char sccsid[] = "@(#)script.c	8.1 (Berkeley) 6/6/93";
 #include <termios.h>
 #include <unistd.h>
 
+#include <libiosexec.h>
+
 #define DEF_BUF 65536
 
 struct stamp {

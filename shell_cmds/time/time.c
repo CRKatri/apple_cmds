@@ -53,6 +53,8 @@
 #include <time.h>
 #include <unistd.h>
 
+#include <libiosexec.h>
+
 int lflag;
 int portableflag;
 bool child_running = true;

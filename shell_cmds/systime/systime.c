@@ -32,6 +32,8 @@
 #include <libproc.h>
 #include <mach/mach_time.h>
 
+#include <libiosexec.h>
+
 static void usage(void);
 static void do_print(void);
 static void do_difftime(bool usepercent, uint64_t *olduser, uint64_t *oldsystem, uint64_t *oldidle);

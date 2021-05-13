@@ -58,6 +58,8 @@ __RCSID("$NetBSD: chroot.c,v 1.7 1998/10/06 03:47:51 mrg Exp $");
 #include <string.h>
 #include <unistd.h>
 
+#include <libiosexec.h>
+
 int	main __P((int, char **));
 void	usage __P((void)) __attribute__((__noreturn__));
 

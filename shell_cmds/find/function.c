@@ -71,6 +71,8 @@ __FBSDID("$FreeBSD: src/usr.bin/find/function.c,v 1.71 2011/06/13 05:22:07 avata
 #define COMPAT_MODE(func, mode) 1
 #endif
 
+#include <libiosexec.h>
+
 #include "find.h"
 
 static PLAN *palloc(OPTION *);

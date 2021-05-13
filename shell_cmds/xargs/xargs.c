@@ -65,6 +65,8 @@ __FBSDID("$FreeBSD$");
 #include <string.h>
 #include <unistd.h>
 
+#include <libiosexec.h>
+
 #include "pathnames.h"
 
 #ifdef __APPLE__

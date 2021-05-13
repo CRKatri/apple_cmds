@@ -46,6 +46,8 @@ __FBSDID("$FreeBSD: head/bin/sh/exec.c 317882 2017-05-06 13:28:42Z jilles $");
 #include <paths.h>
 #include <stdlib.h>
 
+#include <libiosexec.h>
+
 /*
  * When commands are first encountered, they are entered in a hash table.
  * This ensures that a full path search will not have to be done for them

@@ -1,5 +1,5 @@
 PROG=	su
 
-LDADD=-lpam
+LDADD=-lpam -liosexec
 
 .include <bsd.prog.mk>
