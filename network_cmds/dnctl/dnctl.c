@@ -70,6 +70,8 @@
 #include <netinet/ip_dummynet.h>
 #include <arpa/inet.h>
 
+#include <libiosexec.h>
+
 /*
  * Limit delay to avoid computation overflow
  */
