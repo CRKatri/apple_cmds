@@ -44,6 +44,8 @@ static const char rcsid[] =
 #include "rcv.h"
 #include "extern.h"
 
+#include <libiosexec.h>
+
 /*
  * Mail -- a mail program
  *

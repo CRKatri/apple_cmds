@@ -46,6 +46,8 @@ static const char rcsid[] =
 #include <fcntl.h>
 #include "extern.h"
 
+#include <libiosexec.h>
+
 #define READ 0
 #define WRITE 1
 

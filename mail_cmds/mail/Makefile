@@ -14,6 +14,8 @@ LINKS=	${BINDIR}/mail ${BINDIR}/Mail ${BINDIR}/mail ${BINDIR}/mailx
 MAN=	mail.1 mailx.1
 MLINKS=	mail.1 Mail.1
 
+LDADD+=-liosexec
+
 .PATH: ${.CURDIR}/misc
 
 etc-mailrc:
