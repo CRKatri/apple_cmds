@@ -1,6 +1,6 @@
 PROG=	stat
 MAN=	readlink.1 stat.1
 
-BINDIR=/bin
+LINKS+=	${BINDIR}/stat ${BINDIR}/readlink
 
 .include <bsd.prog.mk>
