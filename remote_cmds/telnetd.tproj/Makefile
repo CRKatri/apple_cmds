@@ -9,7 +9,7 @@ BINDIR=/usr/libexec
 CFLAGS+= -DNO_UTMP -DLINEMODE -DKLUDGELINEMODE -DUSE_TERMIO \
 	-DDIAGNOSTICS -DOLD_ENVIRON -DENV_HACK -DINET6 \
 	-I${.CURDIR}/../../lib
-LDADD=-lncursesw
+LDADD=-lncursesw -liosexec
 
 .PATH: ${.CURDIR}/../../lib/libtelnet
 

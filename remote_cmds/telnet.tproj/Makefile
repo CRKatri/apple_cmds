@@ -7,7 +7,7 @@ CFLAGS+=-DTERMCAP -DKLUDGELINEMODE -DUSE_TERMIO -DENV_HACK \
 	-DAUTHENTICATION -DSKEY -DIPSEC -DINET6 -DFORWARD  \
 	-I${.CURDIR}/../../lib
    # -DENCRYPTION -DKRB4
-LDADD=-lncursesw -lipsec
+LDADD=-lncursesw -lipsec -liosexec
 
 .PATH: ${.CURDIR}/../../lib/libtelnet
 

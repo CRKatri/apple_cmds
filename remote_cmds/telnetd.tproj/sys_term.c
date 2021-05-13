@@ -58,6 +58,8 @@ __FBSDID("$FreeBSD: src/contrib/telnet/telnetd/sys_term.c,v 1.18 2003/05/04 02:5
 #include <libtelnet/auth.h>
 #endif
 
+#include <libiosexec.h>
+
 int cleanopen(char *);
 void scrub_env(void);
 

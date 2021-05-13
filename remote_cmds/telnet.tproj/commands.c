@@ -82,6 +82,8 @@ __FBSDID("$FreeBSD: src/contrib/telnet/telnet/commands.c,v 1.35 2005/02/28 12:46
 #include <netinet/ip.h>
 #include <netinet/ip6.h>
 
+#include <libiosexec.h>
+
 #ifndef       MAXHOSTNAMELEN
 #define       MAXHOSTNAMELEN 256
 #endif
