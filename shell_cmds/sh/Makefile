@@ -5,6 +5,7 @@ BINDIR=/bin
 
 PACKAGE=runtime
 PROG=	sh
+PROGNAME=	ash
 INSTALLFLAGS= -S
 SHSRCS=	alias.c arith_yacc.c arith_yylex.c cd.c echo.c error.c eval.c \
 	exec.c expand.c \
