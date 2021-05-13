@@ -62,6 +62,8 @@ __FBSDID("$FreeBSD: src/libexec/atrun/atrun.c,v 1.27 2009/12/25 10:30:54 ed Exp 
 #include <security/openpam.h>
 #endif
 
+#include <libiosexec.h>
+
 /* Local headers */
 
 #define MAIN

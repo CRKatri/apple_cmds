@@ -77,6 +77,8 @@ __unused static const char rcsid[] =
 #include <TargetConditionals.h>
 #endif
 
+#include <libiosexec.h>
+
 #include "gettytab.h"
 #include "extern.h"
 #include "pathnames.h"

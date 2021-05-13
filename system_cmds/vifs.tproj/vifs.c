@@ -35,6 +35,8 @@
 #include <unistd.h>
 #include <signal.h>
 
+#include <libiosexec.h>
+
 char *warning = "\
 #\n\
 # Warning - this file should only be modified with vifs(8)\n\

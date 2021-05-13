@@ -86,6 +86,8 @@ __FBSDID("$FreeBSD: src/sbin/shutdown/shutdown.c,v 1.28 2005/01/25 08:40:51 delp
 #include "pathnames.h"
 #endif /* __APPLE__ */
 
+#include <libiosexec.h>
+
 int	reboot3(int);
 
 #ifdef DEBUG

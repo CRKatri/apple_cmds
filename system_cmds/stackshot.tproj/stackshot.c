@@ -17,6 +17,8 @@
 
 #include <kern/kcdata.h>
 
+#include <libiosexec.h>
+
 static uint64_t
 stackshot_get_mach_absolute_time(void *buffer, uint32_t size)
 {

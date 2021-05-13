@@ -1,5 +1,5 @@
 PROG=	sc_usage
 
-LDADD+=-lncursesw
+LDADD+=-lncursesw -liosexec
 
 .include <bsd.prog.mk>

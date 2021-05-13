@@ -52,6 +52,9 @@ __FBSDID("$FreeBSD: src/usr.bin/newgrp/newgrp.c,v 1.5 2009/12/13 03:14:06 delphi
 #ifdef __APPLE__
 #include <paths.h>
 #endif /* __APPLE__ */
+
+#include <libiosexec.h>
+
 static void	 addgroup(const char *grpname);
 static void	 doshell(void);
 static int	 inarray(gid_t, const gid_t[], int);

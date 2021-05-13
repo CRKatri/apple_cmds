@@ -125,6 +125,8 @@ __FBSDID("$FreeBSD: src/usr.bin/login/login.c,v 1.106 2007/07/04 00:00:40 scf Ex
 #include <security/openpam.h>
 #endif /* USE_PAM */
 
+#include <libiosexec.h>
+
 #include "login.h"
 #include "pathnames.h"
 

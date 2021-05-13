@@ -81,6 +81,8 @@ __unused static char sccsid[] = "@(#)pw_util.c	8.4 (Berkeley) 4/28/95";
 #include <string.h>
 #include <unistd.h>
 
+#include <libiosexec.h>
+
 #include "pw_util.h"
 
 extern char *tempname;

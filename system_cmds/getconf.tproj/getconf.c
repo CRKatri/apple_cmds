@@ -39,6 +39,8 @@ __FBSDID("$FreeBSD: src/usr.bin/getconf/getconf.c,v 1.10 2006/12/06 12:00:26 max
 #include <sysexits.h>
 #include <unistd.h>
 
+#include <libiosexec.h>
+
 #include "getconf.h"
 
 static void	do_confstr(const char *name, int key);

@@ -61,6 +61,8 @@ cc -I. -DPRIVATE -D__APPLE_PRIVATE -O -o sc_usage sc_usage.c -lncurses
 #include <err.h>
 #include <libutil.h>
 
+#include <libiosexec.h>
+
 /* Number of lines of header information on the standard screen */
 #define	HEADER_LINES	5
 
