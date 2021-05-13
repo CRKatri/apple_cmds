@@ -1,7 +1,9 @@
 PROG=	ls
 SRCS=	cmp.c ls.c print.c util.c
 
-LDADD=-lutil
+CFLAGS+=-DCOLORLS
+
+LDADD=-lutil -lncursesw
 
 BINDIR=/bin
 

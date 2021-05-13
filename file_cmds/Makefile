@@ -8,7 +8,6 @@ SUBDIR=	chflags \
 	df \
 	du \
 	gzip \
-	install \
 	ipcrm \
 	ipcs \
 	ln \
@@ -25,6 +24,7 @@ SUBDIR=	chflags \
 	rmt \
 	shar \
 	stat \
-	touch
+	touch \
+	xinstall
 
 .include <bsd.subdir.mk>
