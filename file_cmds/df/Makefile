@@ -1,8 +1,3 @@
-PROG=	df
-SRCS=	df.c vfslist.c
-
-LDADD=-lutil
-
-BINDIR=/bin
+MAN=	df.1
 
 .include <bsd.prog.mk>
