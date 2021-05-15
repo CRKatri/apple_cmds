@@ -1,7 +1,7 @@
 #!/bin/sh
-if command -v bsdtar &>/dev/null; then
+if command -v bsdtar >/dev/null 2>&1; then
 	TAR="bsdtar"
-elif ! tar --version | grep "GNU" &>/dev/null; then
+elif ! tar --version | grep "GNU" >/dev/null 2>&1; then
 	TAR="tar"
 else
 	echo "Install BSD tar"
@@ -15,12 +15,18 @@ for i in adv_cmds basic_cmds bootstrap_cmds \
 		patch_cmds remote_cmds shell_cmds \
 		system_cmds text_cmds; do
 	EXTRA_PATHS=""
-	TARFLAGS="caf"
+	REGEX=""
 	case "$i" in
-		network_cmds) TARFLAGS="-s '|^|network_cmds/|' -caf" EXTRA_PATHS="lib/libpcap";;
-		remote_cmds) TARFLAGS="-s '|^|remote_cmds/|' -caf" EXTRA_PATHS="lib/libtelnet";;
+		network_cmds) REGEX="|^|network_cmds/|" EXTRA_PATHS="lib/libpcap";;
+		remote_cmds) REGEX="|^|remote_cmds/|" EXTRA_PATHS="lib/libtelnet";;
 	esac
 	num=$((num+1))
 	printf "(%i) %s\n" "$num" "$i"
-	${TAR} ${TARFLAGS} $i.tar.zst $i ${EXTRA_PATHS}
+	cp setup.sh $i/setup.sh
+	if [ "${REGEX}" == "" ]; then
+		${TAR} -caf $i.tar.zst $i ${EXTRA_PATHS}
+	else
+		${TAR} -s ${REGEX} -caf $i.tar.zst $i ${EXTRA_PATHS}
+	fi
+	rm $i/setup.sh
 done
