@@ -24,6 +24,10 @@ for i in adv_cmds basic_cmds bootstrap_cmds \
 	num=$((num+1))
 	printf "(%i) %s\n" "$num" "$i"
 	cp setup.sh $i/setup.sh
+	cp $i/Makefile.inc $i.Makefile.inc
+	sed -i '' -e /\.\.\\/Makefile\.inc/d $i/Makefile.inc
+	cat Makefile.inc >> $i/Makefile.inc
 	${TAR} -s ${REGEX} -caf ${i}-${VERSION}.tar.zst $i ${EXTRA_PATHS}
+	mv $i.Makefile.inc $i/Makefile.inc
 	rm $i/setup.sh
 done
