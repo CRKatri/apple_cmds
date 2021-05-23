@@ -56,6 +56,11 @@
 
 #include "ifconfig.h"
 
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ < 135000
+#define flowswitch multistack
+#define ifnr_flowswitch ifnr_multistack
+#endif
+
 static void
 nexus_status(int s)
 {

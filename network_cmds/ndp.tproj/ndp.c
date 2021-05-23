@@ -443,7 +443,9 @@ set(int argc, char **argv)
 		    !(rtm->rtm_flags & RTF_GATEWAY)) switch (sdl->sdl_type) {
 		case IFT_ETHER: case IFT_FDDI: case IFT_ISO88023:
 			case IFT_ISO88024: case IFT_ISO88025:
+#if defined(IFT_6LOWPAN)
 			case IFT_6LOWPAN:
+#endif
 			goto overwrite;
 		}
 		/*

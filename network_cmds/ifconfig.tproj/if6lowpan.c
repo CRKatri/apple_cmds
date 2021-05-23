@@ -58,6 +58,7 @@
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 135000
 #include <sys/param.h>
 #include <sys/ioctl.h>
 #include <sys/socket.h>
@@ -176,3 +177,4 @@ sixlowpan_ctor(void)
 	callback_register(sixlowpan_clone_cb, NULL);
 #undef N
 }
+#endif

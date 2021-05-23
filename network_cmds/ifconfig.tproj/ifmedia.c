@@ -87,6 +87,10 @@
 #include <string.h>
 #include <unistd.h>
 
+#ifndef SIOCGIFXMEDIA
+#define SIOCGIFXMEDIA SIOCGIFMEDIA
+#endif
+
 #include "ifconfig.h"
 
 static void	domediaopt(const char *, int, int);

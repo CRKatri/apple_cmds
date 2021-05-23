@@ -300,6 +300,7 @@ bridge_addresses(int s, const char *prefix)
 }
 
 #define MAX_IPv6_STR_LEN	INET6_ADDRSTRLEN
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 135000
 static void
 bridge_mac_nat(int s, const char *prefix)
 {
@@ -348,6 +349,7 @@ bridge_mac_nat(int s, const char *prefix)
 	}
 	free(buf);
 }
+#endif
 
 static void
 bridge_status(int s)
@@ -399,7 +401,9 @@ bridge_status(int s)
 	if (!all || verbose > 1) {
 		printf("\tAddress cache:\n");
 		bridge_addresses(s, "\t\t");
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 135000
 		bridge_mac_nat(s, "\t\t");
+#endif
 	}
 	return;
 
@@ -865,6 +869,7 @@ unsetbridge_hostfilter(const char *ifn, int d, int s, const struct afswtch *afp)
 		err(1, "BRDGSHOSTFILTER");
 }
 
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 135000
 static void
 setbridge_macnat(const char *val, int d, int s, const struct afswtch *afp)
 {
@@ -878,6 +883,7 @@ unsetbridge_macnat(const char *val, int d, int s, const struct afswtch *afp)
 
 	do_bridgeflag(s, val, IFBIF_MAC_NAT,  0);
 }
+#endif
 
 static struct cmd bridge_cmds[] = {
 	DEF_CMD_ARG("addm",		setbridge_add),
@@ -930,8 +936,10 @@ static struct cmd bridge_cmds[] = {
 #endif
         DEF_CMD_ARG2("hostfilter",	setbridge_hostfilter),
         DEF_CMD_ARG("-hostfilter",	unsetbridge_hostfilter),
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 135000
 	DEF_CMD_ARG("macnat",		setbridge_macnat),
 	DEF_CMD_ARG("-macnat",		unsetbridge_macnat),
+#endif
 };
 static struct afswtch af_bridge = {
 	.af_name	= "af_bridge",

@@ -109,6 +109,10 @@ __unused static const char copyright[] =
 #include <TargetConditionals.h>
 #endif
 
+#ifndef IF_NETEM_PARAMS_PSCALE
+#define IF_NETEM_PARAMS_PSCALE 100000
+#endif
+
 /*
  * Since "struct ifreq" is composed of various union members, callers
  * should pay special attention to interprete the value.
@@ -935,6 +939,7 @@ settbr(const char *val, int dummy __unused, int s, const struct afswtch *afp)
 	}
 }
 
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 135000
 static int
 get_int64(uint64_t *i, char const *s)
 {
@@ -1255,6 +1260,7 @@ bad_args:
 			"\t\tnetem\n\n");
 	return (-1);
 }
+#endif
 
 static void
 setthrottle(const char *val, int dummy __unused, int s,
@@ -1363,6 +1369,7 @@ setconstrained(const char *vname, int value, int s, const struct afswtch *afp)
 }
 #endif
 
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 135000
 static void
 setifmpklog(const char *vname, int value, int s, const struct afswtch *afp)
 {
@@ -1372,6 +1379,7 @@ setifmpklog(const char *vname, int value, int s, const struct afswtch *afp)
 	if (ioctl(s, SIOCSIFMPKLOG, (caddr_t)&ifr) < 0)
 		Perror(vname);
 }
+#endif
 
 void
 settimestamp(const char *vname, int value, int s, const struct afswtch *afp)
@@ -1441,8 +1449,10 @@ setqosmarking(const char *cmd, const char *arg, int s, const struct afswtch *afp
 		
 		if (strcmp(arg, "fastlane") == 0)
 			ifr.ifr_qosmarking_mode = IFRTYPE_QOSMARKING_FASTLANE;
+#if defined(IFRTYPE_QOSMARKING_RFC4594)
         else if (strcmp(arg, "rfc4594") == 0)
             ifr.ifr_qosmarking_mode = IFRTYPE_QOSMARKING_RFC4594;
+#endif
 		else if (strcasecmp(arg, "none") == 0 || strcasecmp(arg, "off") == 0)
 			ifr.ifr_qosmarking_mode = IFRTYPE_QOSMARKING_MODE_NONE;
 		else
@@ -1567,6 +1577,7 @@ setlowpowermode(const char *vname, int value, int s, const struct afswtch *afp)
 		Perror(vname);
 }
 
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 135000
 struct str2num {
 	const char *str;
 	uint32_t num;
@@ -1633,6 +1644,7 @@ setifavailability(const char *vname, int value, int s, const struct afswtch *afp
 	if (ioctl(s, SIOCSIFINTERFACESTATE, (caddr_t)&ifr) < 0)
 		warn("ioctl(SIOCSIFINTERFACESTATE)");
 }
+#endif
 
 static void
 show_routermode(int s)
@@ -1750,11 +1762,13 @@ status(const struct afswtch *afp, const struct sockaddr_dl *sdl,
 		putchar('\n');
 	}
 
+#if defined(SIOCGIFXFLAGS)
 	if (verbose && ioctl(s, SIOCGIFXFLAGS, (caddr_t)&ifr) != -1 &&
 	    (xflags = ifr.ifr_xflags) != 0) {
 		printb("\txflags", xflags, IFXFBITS);
 		putchar('\n');
 	}
+#endif
 
 	if (ioctl(s, SIOCGIFCAP, (caddr_t)&ifr) == 0) {
 		if (ifr.ifr_curcap != 0) {
@@ -2116,9 +2130,11 @@ status(const struct afswtch *afp, const struct sockaddr_dl *sdl,
 				case IFRTYPE_QOSMARKING_FASTLANE:
 					printf("fastlane\n");
 					break;
+#if defined(IFRTYPE_QOSMARKING_RFC4594)
                 case IFRTYPE_QOSMARKING_RFC4594:
                     printf("RFC4594\n");
                     break;
+#endif
 				case IFRTYPE_QOSMARKING_MODE_NONE:
 					printf("none\n");
 					break;
@@ -2134,10 +2150,12 @@ status(const struct afswtch *afp, const struct sockaddr_dl *sdl,
 		printf("\tlow power mode: %s\n",
 		       (ifr.ifr_low_power_mode != 0) ? "enabled" : "disabled");
 	}
+#if defined(SIOCGIFMPKLOG)
 	if (ioctl(s, SIOCGIFMPKLOG, &ifr) != -1) {
 		printf("\tmulti layer packet logging (mpklog): %s\n",
 		       (ifr.ifr_mpk_log != 0) ? "enabled" : "disabled");
 	}
+#endif
 	show_routermode(s);
 	show_routermode6();
 
@@ -2424,8 +2442,10 @@ static struct cmd basic_cmds[] = {
 	DEF_CMD("monitor",	IFF_MONITOR:,	setifflags),
 	DEF_CMD("-monitor",	-IFF_MONITOR,	setifflags),
 #endif /* IFF_MONITOR */
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 135000
 	DEF_CMD("mpklog",	1,		setifmpklog),
 	DEF_CMD("-mpklog",	0,		setifmpklog),
+#endif
 #ifdef IFF_STATICARP
 	DEF_CMD("staticarp",	IFF_STATICARP,	setifflags),
 	DEF_CMD("-staticarp",	-IFF_STATICARP,	setifflags),
@@ -2486,7 +2506,9 @@ static struct cmd basic_cmds[] = {
 	DEF_CMD_VA("routermode", 		routermode),
 	DEF_CMD_ARG("desc",			setifdesc),
 	DEF_CMD_ARG("tbr",			settbr),
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 135000
 	DEF_CMD_VA("netem",			setnetem),
+#endif
 	DEF_CMD_ARG("throttle",			setthrottle),
 	DEF_CMD_ARG("log",			setlog),
 	DEF_CMD("cl2k",	1,			setcl2k),
@@ -2507,10 +2529,14 @@ static struct cmd basic_cmds[] = {
 	DEF_CMD("-probe_connectivity",	0,		setprobeconnectivity),
 	DEF_CMD("lowpowermode",	1,		setlowpowermode),
 	DEF_CMD("-lowpowermode",	0,	setlowpowermode),
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 135000
 	DEF_CMD_ARG("subfamily",		setifsubfamily),
+#endif
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 135000
 	DEF_CMD("available",	1,	setifavailability),
 	DEF_CMD("-available",	0,	setifavailability),
 	DEF_CMD("unavailable",	0,	setifavailability),
+#endif
 };
 
 static __constructor void
@@ -2604,6 +2630,7 @@ ift2str(unsigned int t, unsigned int f, unsigned int sf)
 		c = "Cellular";
 		break;
 
+#if defined(APPLE_IF_FAM_IPSEC)
 	case IFT_OTHER:
 		if (ifr.ifr_type.ift_family == APPLE_IF_FAM_IPSEC) {
 			if (ifr.ifr_type.ift_subfamily == IFRTYPE_SUBFAMILY_BLUETOOTH) {
@@ -2617,6 +2644,7 @@ ift2str(unsigned int t, unsigned int f, unsigned int sf)
 			}
 		}
 		break;
+#endif
 
 	case IFT_BRIDGE:
 	case IFT_PFLOG:
@@ -2681,9 +2709,11 @@ iffunct2str(u_int32_t functional_type)
 		case IFRTYPE_FUNCTIONAL_INTCOPROC:
 			break;
 
+#if defined(IFRTYPE_FUNCTIONAL_COMPANIONLINK)
 		case IFRTYPE_FUNCTIONAL_COMPANIONLINK:
 			str = "companionlink";
 			break;
+#endif
 
 		default:
 			break;
