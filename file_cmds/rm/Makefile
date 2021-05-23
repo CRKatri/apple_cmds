@@ -5,4 +5,6 @@ BINDIR=/bin
 
 LINKS+=	${BINDIR}/rm ${BINDIR}/unlink
 
+CFLAGS+=-I${.CURDIR}/../common
+
 .include <bsd.prog.mk>

@@ -7,4 +7,6 @@ BINDIR=/usr/bin
 
 LINKS+=	${BINDIR}/compress ${BINDIR}/uncompress
 
+CFLAGS+=-I${.CURDIR}/../common
+
 .include <bsd.prog.mk>

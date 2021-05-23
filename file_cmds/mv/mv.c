@@ -84,6 +84,10 @@ __RCSID("$FreeBSD: src/bin/mv/mv.c,v 1.39 2002/07/09 17:45:13 johan Exp $");
 
 #include "pathnames.h"
 
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ < 140000
+#include "rpmatch.c"
+#endif
+
 int fflg, iflg, nflg, vflg;
 
 int	copy(char *, char *);

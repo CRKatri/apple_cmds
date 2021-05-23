@@ -59,6 +59,10 @@ __FBSDID("$FreeBSD: src/usr.bin/compress/compress.c,v 1.23 2010/12/11 08:32:16 j
 
 #include "zopen.h"
 
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ < 140000
+#include "rpmatch.c"
+#endif
+
 void	compress(const char *, const char *, int);
 void	cwarn(const char *, ...) __printflike(1, 2);
 void	cwarnx(const char *, ...) __printflike(1, 2);

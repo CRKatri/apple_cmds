@@ -561,10 +561,12 @@ traverse(int argc, char *argv[], int options)
 				break;
 			}
 
+#ifdef SF_DATALESS
 			if (IS_DATALESS(p->fts_statp)) {
 				fts_set(ftsp, p, FTS_SKIP);
 				break;
 			}
+#endif
 
 			/*
 			 * If already output something, put out a newline as
@@ -857,9 +859,11 @@ display(FTSENT *p, FTSENT *list)
 				} else {
 					np->mode_suffix = ' ';
 				}
+#ifdef SF_DATALESS
 				if (IS_DATALESS(sp)) {
 					np->mode_suffix = '%';
 				}
+#endif
 				if (!f_acl) {
 					acl_free(np->acl);
 					np->acl = NULL;

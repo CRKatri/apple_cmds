@@ -81,6 +81,10 @@ __FBSDID("$FreeBSD: src/bin/cp/cp.c,v 1.52 2005/09/05 04:36:08 csjp Exp $");
 
 #include "extern.h"
 
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ < 140000
+#include "rpmatch.c"
+#endif
+
 #define	STRIP_TRAILING_SLASH(p) {					\
         while ((p).p_end > (p).p_path + 1 && (p).p_end[-1] == '/')	\
                 *--(p).p_end = 0;					\

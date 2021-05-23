@@ -75,6 +75,10 @@ __used static const char rcsid[] =
 #define COMPAT_MODE(func, mode) 1
 #endif
 
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ < 140000
+#include "rpmatch.c"
+#endif
+
 int dflag, eval, fflag, iflag, Pflag, vflag, Wflag, stdin_ok;
 uid_t uid;
 

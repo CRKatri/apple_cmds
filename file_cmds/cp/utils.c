@@ -66,6 +66,10 @@ __FBSDID("$FreeBSD: src/bin/cp/utils.c,v 1.46 2005/09/05 04:36:08 csjp Exp $");
 #define COMPAT_MODE(a,b) (1)
 #endif /* __APPLE__ */
 
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ < 140000
+int rpmatch(const char *);
+#endif
+
 #include "extern.h"
 #define	cp_pct(x,y)	(int)(100.0 * (double)(x) / (double)(y))
 

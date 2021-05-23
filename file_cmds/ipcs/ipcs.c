@@ -42,19 +42,19 @@
 #include <unistd.h>
 #include <sysexits.h>
 
-#include "sys/types.h"
+#include <sys/types.h>
 #include <sys/ucred.h>
 #include <sys/time.h>
 #include <sys/proc.h>
 #include <sys/param.h>
 #include <sys/sysctl.h>
 #include <errno.h>
-#include "sys/ipcs.h"
+#include <sys/ipcs.h>
 #define KERNEL 1		/* To get new ipc_perm and __(sem|shm|msg)ds_new */
-#include "sys/ipc.h"
-#include "sys/sem_internal.h"
-#include "sys/shm_internal.h"
-#include "sys/msg.h"
+#include <sys/ipc.h>
+#include <sys/sem_internal.h>
+#include <sys/shm_internal.h>
+#include <sys/msg.h>
 
 
 /* The following is a kludge, until the problem of multiple inclusions
