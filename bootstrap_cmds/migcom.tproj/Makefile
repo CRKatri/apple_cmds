@@ -14,7 +14,9 @@ SRCS=	error.c \
 	parser.y
 SCRIPTS=	mig.sh
 
-CFLAGS+=-DMIG_VERSION=\"mig-116.100.1\"
+VERSION!=	cat ${.CURDIR}/../.apple_version
+
+CFLAGS+=-DMIG_VERSION=\"mig-${VERSION}\"
 
 BINDIR=/usr/libexec/
 SCRIPTSDIR=/usr/bin/
