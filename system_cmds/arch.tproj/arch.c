@@ -34,6 +34,7 @@
 #include <sys/param.h>
 #include <paths.h>
 #include <err.h>
+typedef char *kobject_description_t[512];
 #include <mach/mach.h>
 #include <mach-o/arch.h>
 #include <limits.h>
@@ -76,6 +77,7 @@ typedef struct {
     size_t capacity;
 } CPU;
 
+#if 0
 typedef struct {
     const char *arch;
     cpu_type_t cpu;
@@ -166,6 +168,7 @@ isSupportedCPU(cpu_type_t cpu)
 
 bool unrecognizednative32seen = false;
 bool unrecognizednative64seen = false;
+#endif
 
 /*
  * arch - perform the original behavior of the arch and machine commands.
@@ -188,6 +191,7 @@ arch(int archcmd)
     exit(0);
 }
 
+#if 0
 /*
  * spawnIt - run the posix_spawn command.  cpu is the auto-sizing CPU structure.
  * pflag is non-zero to call posix_spawnp; zero means to call posix_spawn.
@@ -770,7 +774,7 @@ spawnFromArgs(CPU *cpu, char **argv)
      */
     spawnIt(cpu, 1, *argv, argv);
 }
-
+#endif
 
 /* the main() routine */
 int
@@ -788,7 +792,8 @@ main(int argc, char **argv)
         if(argc == 1)
             arch(1); /* the "arch" command with no arguments was called */
     }
-
+    return(0);
+#if 0
     initCPU(&cpu);
 
     if(my_name_is_arch)
@@ -798,4 +803,5 @@ main(int argc, char **argv)
 
     /* should never get here */
     errx(1, "returned from spawn");
+#endif
 }

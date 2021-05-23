@@ -37,6 +37,7 @@
  *	execting on.
  */
 
+typedef char *kobject_description_t[512];
 #include <mach/mach.h>
 #include <mach/mach_error.h>
 #include <sys/sysctl.h>

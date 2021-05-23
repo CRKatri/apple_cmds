@@ -7,6 +7,7 @@
  * made here may also need to be made there.
  */
 
+typedef char *kobject_description_t[512];
 #include <sys/param.h>
 #include <sys/types.h>
 #include <sys/file.h>

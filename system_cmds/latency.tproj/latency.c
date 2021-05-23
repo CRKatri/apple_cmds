@@ -25,6 +25,7 @@
    cc -I/System/Library/Frameworks/System.framework/Versions/B/PrivateHeaders -DPRIVATE -D__APPLE_PRIVATE -arch x86_64 -arch i386 -O -o latency latency.c -lncurses -lutil
 */
 
+typedef char *kobject_description_t[512];
 #include <mach/mach.h>
 #include <stdlib.h>
 #include <stdio.h>

@@ -14,6 +14,7 @@
 #include <string.h>
 #include <sysexits.h>
 #include <unistd.h>
+typedef char *kobject_description_t[512];
 #include <mach/mach.h>
 
 static void usage()

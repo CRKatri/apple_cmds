@@ -64,6 +64,7 @@ __FBSDID("$FreeBSD: src/sbin/shutdown/shutdown.c,v 1.28 2005/01/25 08:40:51 delp
 #ifdef __APPLE__
 #include <errno.h>
 #include <util.h>
+typedef char *kobject_description_t[512];
 #include <bsm/libbsm.h>
 #include <bsm/audit_uevents.h>
 #include <sys/types.h>

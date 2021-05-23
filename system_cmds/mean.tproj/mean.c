@@ -7,6 +7,7 @@
  *
  */
 
+typedef char *kobject_description_t[512];
 #include <mach/mach.h>
 #include <mach/task.h>
 #include <mach/thread_act.h>

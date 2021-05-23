@@ -65,6 +65,7 @@ __unused static const char rcsid[] =
 #include "kextmanager.h"
 #include <IOKit/kext/kextmanager_types.h>
 #endif
+typedef char *kobject_description_t[512];
 #include <mach/mach_port.h>		// allocate
 #include <mach/mach.h>			// task_self, etc
 #include <servers/bootstrap.h>	// bootstrap

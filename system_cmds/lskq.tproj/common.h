@@ -26,6 +26,31 @@
 
 #include <stdint.h>
 
+#ifndef __enum_open
+#if __has_attribute(enum_extensibility)
+#define __enum_open __attribute__((__enum_extensibility__(open)))
+#define __enum_closed __attribute__((__enum_extensibility__(closed)))
+#else
+#define __enum_open
+#define __enum_closed
+#endif // __has_attribute(enum_extensibility)
+#endif
+
+#ifndef __enum_options
+#if __has_attribute(flag_enum)
+#define __enum_options __attribute__((__flag_enum__))
+#else
+#define __enum_options
+#endif
+#endif
+
+#ifndef __enum_decl
+#define __enum_decl(_name, _type, ...) \
+	        typedef _type _name; enum __VA_ARGS__ __enum_open
+#define __options_decl(_name, _type, ...) \
+	        typedef _type _name; enum __VA_ARGS__ __enum_open __enum_options
+#endif
+
 /*
  * This file must be kept in sync with xnu headers
  */

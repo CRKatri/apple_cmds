@@ -2,6 +2,7 @@
  * Copyright (c) 2016 Apple Inc.  All rights reserved.
  */
 
+typedef char *kobject_description_t[512];
 #include "options.h"
 #include "vm.h"
 #include "utils.h"

@@ -2,6 +2,7 @@
  * Copyright (c) 2016-2018 Apple Inc.  All rights reserved.
  */
 
+typedef char *kobject_description_t[512];
 #include "options.h"
 #include "corefile.h"
 #include "sparse.h"

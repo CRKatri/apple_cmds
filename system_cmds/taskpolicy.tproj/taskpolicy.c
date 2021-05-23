@@ -32,6 +32,7 @@
 #include <sys/errno.h>
 #include <stdbool.h>
 #include <sysexits.h>
+typedef char *kobject_description_t[512];
 #include <mach/mach.h>
 #include <mach/task_policy.h>
 

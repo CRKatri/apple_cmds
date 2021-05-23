@@ -25,6 +25,7 @@
 #include <stdlib.h>
 #include <libproc.h>
 #include <assert.h>
+typedef char *kobject_description_t[512];
 #include <mach/mach.h>
 //#include <mach/mach_port.h.h>
 #include <mach/mach_voucher.h>
@@ -232,7 +233,7 @@ char * copy_voucher_detail(mach_port_t task, mach_port_name_t voucher, JSON_t js
     return voucher_outstr;
 }
 
-void get_receive_port_context(task_read_t taskp, mach_port_name_t portname, mach_port_context_t *context) {
+void get_receive_port_context(task_t taskp, mach_port_name_t portname, mach_port_context_t *context) {
 	if (context == NULL) {
 		return;
 	}
@@ -248,7 +249,7 @@ void get_receive_port_context(task_read_t taskp, mach_port_name_t portname, mach
 	return;
 }
 
-int get_recieve_port_status(task_read_t taskp, mach_port_name_t portname, mach_port_info_ext_t *info){
+int get_recieve_port_status(task_t taskp, mach_port_name_t portname, mach_port_info_ext_t *info){
     if (info == NULL) {
         return -1;
     }
@@ -609,6 +610,7 @@ static void show_task_table_entry(ipc_info_name_t *entry, my_per_task_info_t *ta
 
     /* converting to kobjects is not always supported */
 
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ >= 130500
     desc[0] = '\0';
     ret = mach_port_kobject_description(taskinfo->task,
                                   entry->iin_name,
@@ -621,23 +623,22 @@ static void show_task_table_entry(ipc_info_name_t *entry, my_per_task_info_t *ta
                                   entry->iin_name,
                                   &kotype, (unsigned *)&kobject);
     }
+#else
+	    ret = mach_port_kernel_object(taskinfo->task,
+                                  entry->iin_name,
+                                  &kotype, (unsigned *)&kobject);
+#endif
 
     if (ret == KERN_SUCCESS && kotype != 0) {
         JSON_OBJECT_SET(json, identifier, "0x%08x", (natural_t)kobject);
         JSON_OBJECT_SET(json, type, "%s", kobject_name(kotype));
-        
-        if (desc[0]) {
-            JSON_OBJECT_SET(json, description, "%s", desc);
-            printf("                                             0x%08x  %s %s", (natural_t)kobject, kobject_name(kotype), desc);
-        } else {
-            printf("                                             0x%08x  %s", (natural_t)kobject, kobject_name(kotype));
-        }
-        
-        if ((kotype == IKOT_TASK_RESUME) ||
-            (kotype == IKOT_TASK_CONTROL) ||
-            (kotype == IKOT_TASK_READ) ||
-            (kotype == IKOT_TASK_INSPECT) ||
-            (kotype == IKOT_TASK_NAME)) {
+	if (desc[0]) {
+		JSON_OBJECT_SET(json, description, "%s", desc);
+		printf("                                             0x%08x  %s %s", (natural_t)kobject, kobject_name(kotype), desc);
+	} else {
+		printf("                                             0x%08x  %s", (natural_t)kobject, kobject_name(kotype));
+	}
+        if ((kotype == IKOT_TASK_RESUME) || (kotype == IKOT_TASK_CONTROL) || (kotype == IKOT_TASK_NAME)) {
             if (taskinfo->task_kobject == kobject) {
                 /* neat little optimization since in most cases tasks have themselves in their ipc space */
                 JSON_OBJECT_SET(json, pid, %d, taskinfo->pid);
@@ -651,9 +652,7 @@ static void show_task_table_entry(ipc_info_name_t *entry, my_per_task_info_t *ta
             }
         }
 
-			if ((kotype == IKOT_THREAD_CONTROL) ||
-                (kotype == IKOT_THREAD_READ) ||
-                (kotype == IKOT_THREAD_INSPECT)) {
+			if (kotype == IKOT_THREAD_CONTROL) {
 				for (int i = 0; i < taskinfo->threadCount; i++) {
 					if (taskinfo->threadInfos[i].th_kobject == kobject) {
 						printf(" (%#llx)", taskinfo->threadInfos[i].th_id);
@@ -681,7 +680,7 @@ static void show_task_table_entry(ipc_info_name_t *entry, my_per_task_info_t *ta
     /* not kobject - find the receive right holder */
     my_per_task_info_t *recv_holder_taskinfo;
     mach_port_name_t recv_name = MACH_PORT_NULL;
-    if (KERN_SUCCESS == get_taskinfo_of_receiver_by_send_right(*entry, &recv_holder_taskinfo, &recv_name)) {
+    if (KERN_SUCCESS == get_taskinfo_of_receiver_by_send_right(entry, &recv_holder_taskinfo, &recv_name)) {
         mach_port_status_t port_status;
         mach_port_info_ext_t info;
         mach_port_context_t port_context = (mach_port_context_t)0;

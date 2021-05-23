@@ -153,10 +153,16 @@ fflags_build(struct kevent_extinfo *info, char *str, int len)
 		break;
 
 	case EVFILT_WORKLOOP:
+#ifdef NOTE_WL_SYNC_IPC
 		snprintf(str, len, "%c%c%c%c%c  ",
+#else
+		snprintf(str, len, "%c%c%c%c  ",
+#endif
 			(ff & NOTE_WL_THREAD_REQUEST) ? 't' :
 			(ff & NOTE_WL_SYNC_WAIT)      ? 'w' :
+#ifdef NOTE_WL_SYNC_IPC
 			(ff & NOTE_WL_SYNC_IPC)       ? 'i' : '-',
+#endif
 			(ff & NOTE_WL_SYNC_WAKE)      ? 'W' : '-',
 			(ff & NOTE_WL_UPDATE_QOS)     ? 'q' : '-',
 			(ff & NOTE_WL_DISCOVER_OWNER) ? 'o' : '-',
