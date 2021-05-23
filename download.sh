@@ -10,7 +10,7 @@ else
 	wget -q https://opensource.apple.com/tarballs/${1}/${1}-${version}.tar.gz
 	rm -rf ${1}
 	mkdir ${1}
-	tar xf ${TEMP}/${1}-${version}.tar.gz -C ${1} --strip-components=1
+	tar xf ${1}-${version}.tar.gz -C ${1} --strip-components=1
 	echo "${version}" > ${1}/.apple_version
 	rm ${1}-${version}.tar.gz
 fi
