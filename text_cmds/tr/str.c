@@ -66,8 +66,12 @@ static void	genseq(STR *);
  * Using libc internal function __collate_lookup_l for character
  * equivalence
  */
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ < 140000
+#include "collate-fbsd.c"
+#else
 void __collate_lookup_l(const __darwin_wchar_t *, int *, int *, int *,
 locale_t);
+#endif
 /*
  * Cache for primary collation weight of each single byte character
  * used in static void genequiv(s)
