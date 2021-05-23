@@ -75,6 +75,8 @@ __FBSDID("$FreeBSD$");
 #define COMPAT_MODE(a,b) (1)
 #endif /* __APPLE__ */
 
+long long	strtonum(const char*, long long, long long, const char**);
+
 static void	parse_input(int, char *[]);
 static void	prerun(int, char *[]);
 static int	prompt(void);

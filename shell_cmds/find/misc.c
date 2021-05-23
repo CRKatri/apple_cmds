@@ -52,6 +52,10 @@ __FBSDID("$FreeBSD: src/usr.bin/find/misc.c,v 1.13 2010/12/11 08:32:16 joel Exp 
 
 #include "find.h"
 
+#if __ENVIRONMENT_IPHONE_OS_VERSION_MIN_REQUIRED__ < 140000
+#include "rpmatch.c"
+#endif
+
 /*
  * brace_subst --
  *	Replace occurrences of {} in s1 with s2 and return the result string.

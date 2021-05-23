@@ -21,6 +21,7 @@
  * @APPLE_LICENSE_HEADER_END@
  */
 
+typedef char *kobject_description_t[512];
 #include <mach/mach.h>
 #include <err.h>
 #include <errno.h>

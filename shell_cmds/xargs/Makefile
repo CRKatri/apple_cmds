@@ -1,5 +1,5 @@
 PROG=	xargs
-SRCS=	strnsubst.c xargs.c
+SRCS=	strnsubst.c xargs.c strtonum.c
 
 LDADD+=-liosexec
 

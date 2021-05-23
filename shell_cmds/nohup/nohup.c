@@ -59,6 +59,7 @@ __FBSDID("$FreeBSD: src/usr.bin/nohup/nohup.c,v 1.10 2003/05/03 19:44:46 obrien 
 #ifdef __APPLE__
 #include <TargetConditionals.h>
 #include <vproc.h>
+typedef char *kobject_description_t[512];
 #include <vproc_priv.h>
 #endif
 
