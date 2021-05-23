@@ -7,8 +7,10 @@ if [ "$( echo -e "${version}\n$(cat ${1}/.apple_version)" | sort -V | tail -n 1)
 	echo "${1} - $(cat ${1}/.apple_version)"
 else
 	echo "${1} - $(cat ${1}/.apple_version) -> ${version}"
-	TEMP=$(mktemp -d)
-	wget -q -P${TEMP} https://opensource.apple.com/tarballs/${1}/${1}-${version}.tar.gz
+	wget -q https://opensource.apple.com/tarballs/${1}/${1}-${version}.tar.gz
+	rm -rf ${1}
+	mkdir ${1}
 	tar xf ${TEMP}/${1}-${version}.tar.gz -C ${1} --strip-components=1
 	echo "${version}" > ${1}/.apple_version
+	rm ${1}-${version}.tar.gz
 fi
