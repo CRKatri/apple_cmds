@@ -79,7 +79,9 @@ const mountopt_t optnames[] = {
     { MNT_DEFWRITE,     "defwrite",     NULL,           },
     { MNT_IGNORE_OWNERSHIP, "noowners", "noowners",     },
     { MNT_NOATIME,      "noatime",      "noatime",      },
+#if defined(MNT_STRICTATIME)
     { MNT_STRICTATIME,  "strictatime",  "strictatime",  },
+#endif
     { MNT_QUARANTINE,   "quarantine",   "quarantine",   },
     { MNT_DONTBROWSE,   "nobrowse",     "nobrowse",     },
     { MNT_CPROTECT,     "protect",      "protect",      },

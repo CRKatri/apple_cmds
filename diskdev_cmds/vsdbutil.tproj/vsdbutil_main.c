@@ -41,7 +41,7 @@
 #include <sys/time.h>
 #include <sys/ucred.h>
 #include <sys/resource.h>
-#include <sys/vmmeter.h>
+// #include <sys/vmmeter.h>
 #include <sys/wait.h>
 #include <stdio.h>
 #include <unistd.h>
