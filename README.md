@@ -1,3 +1,5 @@
+Moved to Moved to https://git.cameronkatri.com/CRKatri/apple_cmds
+
 # apple_cmds
 A WIP port of the macOS/FreeBSD userland for iOS using BSD make
 
